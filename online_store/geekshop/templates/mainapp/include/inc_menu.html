@@ -2,12 +2,14 @@
     <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
         {% for link in links %}
-            <li>
-                <a href="{% url link.href %}" 
-                    class="{% if request.resolver_match.url_name == link.href %} active {% endif %}">
-                {{ link.name }}
-                </a>
-            </li>
+        <li>
+            <a href="{% url link.href %}"
+            {% if request.resolver_match.view_name in link.active_if %}
+                class="active"
+            {% endif %}>
+            {{ link.name }}
+            </a>
+        </li>
         {% endfor %}
     </ul>
 </div>
