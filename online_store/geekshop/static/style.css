@@ -266,7 +266,6 @@ html, body {
 	width: 270px;
 	position: relative;
 }
-
 .tab-content a .text {
 	display: none;
 	height: 268px;
@@ -278,7 +277,6 @@ html, body {
     text-align: center;
     border: 1px solid #9c9c9c;
 }
-
 
 .tab-content a .product-image {
 	height: 268px;
@@ -292,7 +290,6 @@ html, body {
 	line-height: 30px;
 	text-align: center;
 }
-
 .tab-content a .text p {
 	color:  #6c6c6c;
 	font-size: 14px;
@@ -592,9 +589,9 @@ html, body {
 }
 .text-footer p {
 	color:  #212121;
-	font-size: 14px;/* Приближение из-за подстановки шрифтов */
+	font-size: 14px;/* РџСЂРёР±Р»РёР¶РµРЅРёРµ РёР·-Р·Р° РїРѕРґСЃС‚Р°РЅРѕРІРєРё С€СЂРёС„С‚РѕРІ */
 	font-weight: 300;
-	line-height: 24px;/* Приближение из-за подстановки шрифтов */
+	line-height: 24px;/* РџСЂРёР±Р»РёР¶РµРЅРёРµ РёР·-Р·Р° РїРѕРґСЃС‚Р°РЅРѕРІРєРё С€СЂРёС„С‚РѕРІ */
 	text-align: left;
 	margin-bottom: 20px;
 }
@@ -1078,4 +1075,7 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
+}
+.errorlist {
+	color: red;
 }
