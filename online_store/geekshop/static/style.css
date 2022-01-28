@@ -22,6 +22,10 @@ html, body {
 	min-height: 100%;
 }
 
+.container .a .block {
+	padding: 0;
+}
+
 .slider {
 	height: 800px;
 	background-image: url(img/slider.jpg); 
@@ -1078,4 +1082,21 @@ td:first-child {
 }
 .errorlist {
 	color: red;
+}
+
+div.category-products.clearfix {
+	width: 1366px; 
+	height: 100%; 
+	float: left;
+}
+
+div.block {
+	margin: 0px; 
+	padding: 10px; 
+	width: 270px; 
+	display: inline-block;
+}
+
+.products_list h2 {
+	margin-top: 80px;
 }
