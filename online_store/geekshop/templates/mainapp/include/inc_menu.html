@@ -1,16 +1,21 @@
 <div class="header clearfix">
     <a href="{% url 'index' %}" class="logo"></a>
     <ul class="menu">
-        {% for link in links %}
         <li>
-            <a href="{% url link.href %}"
-            {% if request.resolver_match.view_name in link.active_if %}
-                class="active"
-            {% endif %}>
-            {{ link.name }}
+            <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}">
+                домой
             </a>
         </li>
-        {% endfor %}
+        <li>
+            <a href="{% url 'products:category' 0 %}" class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}">
+                продукты
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+                контакты
+            </a>
+        </li>
         
         {% if user.is_authenticated %}
             <li>
@@ -29,6 +34,9 @@
                 <a href="{% url 'auth:register' %}">зарегистрироваться</a>
             </li>
         {% endif %}
+        <li>
+            <a href="{% url 'cart:view' %}">корзина ({{ request.user.cart.all|length }})</a>
+        </li>
     </ul>
     <a href="#" class="search"></a>
     <a href="#" class="basket"></a>
