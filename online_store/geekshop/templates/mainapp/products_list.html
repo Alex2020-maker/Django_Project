@@ -1,42 +1,37 @@
-{% extends 'mainapp/base.html' %}
-{% load static %}
-
-{% block menu %}
-  <div class="hero-white">
-    <div class="header clearfix">
-      {% include 'mainapp/include/inc_menu.html' %}
-    </div>
+{% extends 'mainapp/base.html' %} {% load static %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+{% endblock css %} {% block menu %}
+<div class="hero-white">
+  <div class="header clearfix">
+    {% include 'mainapp/include/inc_menu.html' %}
   </div>
-{% endblock %}
+</div>
+{% endblock %} {% block content %}
+<div class="details">
+  <div class="links clearfix">
+    {% include 'mainapp/include/inc_categories_menu.html' %}
+  </div>
 
-{% block content %}
-  <div class="details">
-    <div class="links clearfix">
-      {% include 'mainapp/include/inc_categories_menu.html' %}
+  <div class="products_list">
+    <div class="title clearfix">
+      <h2>Категория: "{{ category.name|title }}"</h2>
     </div>
-
-    <div class="products_list">
-      <div class="title clearfix">
-        <h2>
-          Категория: "{{ category.name|title }}"
-        </h2>
-      </div>
-      <div class="category-products clearfix">
-        {% for product in products %}
-          <div class="block">
-            <a href="#">
-              <img src="/media/{{ product.image }} "alt="product">
-              {% comment %} <div class="text">
-                <img src="{% static 'img/icon-hover.png' %}" alt="hover">
-                  <h4>{{ product.name }}</h4>
-                  <p>{{ product.description }}</p>
-              </div> {% endcomment %}
-            </a>
+    <div class="category-products clearfix">
+      {% for product in products %}
+      <div class="block">
+        <a href="#">
+          <img src="/media/{{ product.image }} " alt="product" />
+          {% comment %}
+          <div class="text">
+            <img src="{% static 'img/icon-hover.png' %}" alt="hover" />
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description }}</p>
           </div>
-        {% endfor %}
-
+          {% endcomment %}
+        </a>
       </div>
+      {% endfor %}
     </div>
   </div>
-
-{% endblock %}
+  {% endblock %}
+</div>
