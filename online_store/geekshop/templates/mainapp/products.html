@@ -1,97 +1,84 @@
-{% extends 'mainapp/base.html' %} 
-{% load static %} 
-{% block title%}
-{{titile}}
-{% endblock%} 
-{% block menu %} 
-{% include 'mainapp/include/inc_menu.html'%}{% endblock %} {% block content %}
-
+{% extends 'mainapp/base.html' %} {% load static %} {% block menu %}
+<div class="hero-white">
+  <div class="header clearfix">
+    {% include 'mainapp/include/inc_menu.html' %}
+  </div>
+</div>
+{% endblock %} {% block content %}
 <div class="details">
   <div class="links clearfix">
     {% include 'mainapp/include/inc_categories_menu.html' %}
-    <ul class="menu">
-      {% for category in categories %}
-      <li>
-        <a
-          href="{{ category.href }}"
-          class="{% if category.name == selected_category.name %} active {% endif %}"
-        >
-          {{ category.name }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
   </div>
-
+  {% comment %} Нужно перенести стили в css файл {% endcomment %}
   <div class="details-products">
-    {% if products %} {% with product=products.0 %}
     <div class="details-slider">
       <div class="slider-product">
-        <img src="/media/{{ product.image }}" />
+        <img src="/media/{{ hot_product.image}}" />
+      </div>
+      <div class="slider-control">
+        <div class="block">
+          <a href="#"
+            ><img src="/media/{{ hot_product.image }}" alt="" />
+            <div class="text"></div>
+          </a>
+        </div>
+        <div class="block">
+          <a href="#"
+            ><img src="/media/{{ hot_product.image }}" alt="" />
+            <div class="text"></div>
+          </a>
+        </div>
+        <div class="block">
+          <a href="#"
+            ><img src="/media/{{ hot_product.image }}" alt="" />
+            <div class="text"></div>
+          </a>
+        </div>
       </div>
     </div>
 
     <div class="description">
-      <h3 class="big-bold">{{ products.0.name }}</h3>
-      <h3 class="red">{{ products.0.short_desc }}</h3>
-      <p class="price">{{ product.price }}<span>руб</span></p>
-      <a href="#" class="red-button">
-        заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <div class="description-text">
-        {{ products.0.description|linebreaks }}
-      </div>
-    </div>
-    {% endwith %} {% else %}
-    <div class="details-slider">
-      <div class="slider-product" >
-        <img src="{% static 'img/no_product.png' %}" />
-      </div>
-    </div>
-
-    <div class="description">
-      <h3 class="big-bold">Товар отсутсвует</h3>
-      <a href="#" class="red-button">
-        Уведомить о наличии
+      <h3 class="big-bold">{{ hot_product.name }}</h3>
+      <h3 class="red">горячее предложение</h3>
+      <p class="price">{{ hot_product.price }} <span>руб</span></p>
+      <a href="{% url 'products:product' hot_product.id %}" class="red-button">
+        Заказать
         <i class="fa fa-chevron-right" aria-hidden="true"></i>
       </a>
-      <div class="description-text">
-        <p>Товар появится позже</p>
-      </div>
+      <div class="description-text">{{ hot_product.description }}</div>
     </div>
-    {% endif %}
   </div>
 
-  {% if products %}
   <div class="related">
     <div class="title clearfix">
       <h2>Похожие продукты</h2>
       <a class="explore" href="#"
-        >показать все
-        <img src="{% static 'img/arrow.png' %}" alt="" />
-      </a>
+        >показать все <img src="/static/img/arrow.png" alt=""
+      /></a>
     </div>
     <div class="related-products clearfix">
-      {% for product in products %}
+      {% for product in same_products %}
       <div class="block">
-        <a href="#">
+        <a href="{% url 'products:product' product.pk %}">
           <img
-            class="product-image"
             src="/media/{{ product.image }}"
             alt="{{ product.short_desc }}"
           />
           <div class="text">
-            <img src="{% static 'img/icon-hover.png' %}" alt="img" />
-            <h4>{{product.name}}</h4>
-            <p>{{product.description}}</p>
+            <img src="/static/img/icon-hover.png" alt="img" />
+            <h3>Категория:{{ product.category.name }}</h3>
+            <h4>Название: {{ product.name }}</h4>
+            <p>Описание: {{ product.description }}</p>
+            <p>Цена: {{ product.price }}</p>
+            <p>На складе: {{ product.quantity }}</p>
           </div>
         </a>
       </div>
       {% endfor %}
     </div>
   </div>
-  {% endif %}
 
   <div class="clr"></div>
+
   {% endblock %}
 </div>

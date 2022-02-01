@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "authapp",
     "cartapp",
 ]
-
+# Это такие функции, через которые проходит запрос прежде, чем попасть в файл views.py
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -88,7 +88,6 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
@@ -137,3 +136,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Authentication
 
 AUTH_USER_MODEL = "authapp.ShopUser"
+LOGIN_URL = "auth:login"

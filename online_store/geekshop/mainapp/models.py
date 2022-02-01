@@ -1,3 +1,4 @@
+import random
 import decimal
 from django.db import models
 from django.db.models.fields import DecimalField, FloatField, CharField
@@ -14,9 +15,8 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-
     class Meta:
-        ordering = ('-price', 'name')
+        ordering = ("-price", "name")
 
     name = models.CharField(verbose_name="имя", max_length=128, unique=True)
     description = models.TextField(verbose_name="описание", blank=True, null=True)
@@ -39,4 +39,3 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.category.name})"
-    

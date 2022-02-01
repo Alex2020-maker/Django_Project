@@ -6,11 +6,11 @@
                 домой
             </a>
         </li>
-        <li>
-            <a href="{% url 'products:category' 0 %}" class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}">
-                продукты
-            </a>
-        </li>
+    <li>
+        <a href="{% url 'products:index' %}" class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}">
+            продукты
+        </a>
+    </li>
         <li>
             <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
                 контакты
@@ -32,12 +32,18 @@
             </li>
             <li>
                 <a href="{% url 'auth:register' %}">зарегистрироваться</a>
+
             </li>
         {% endif %}
         <li>
-            <a href="{% url 'cart:view' %}">корзина ({{ request.user.cart.all|length }})</a>
+            <a href="{% url 'cart:view' %}">Корзина 
+                {% if request.user.cart.has_items %}(
+                    {{ request.user.cart.amount }}, {{ request.user.cart.total_cost }})
+                {% endif %}
+            </a>
         </li>
     </ul>
     <a href="#" class="search"></a>
     <a href="#" class="basket"></a>
 </div>
+
