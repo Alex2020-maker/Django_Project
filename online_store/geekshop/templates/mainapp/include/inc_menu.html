@@ -35,6 +35,13 @@
 
             </li>
         {% endif %}
+        
+        {% if user.is_superuser %}
+        <li>
+          <a href="{% url 'admin:users' %}">админка</a>
+        </li>
+      {% endif %}
+      
         <li>
             <a href="{% url 'cart:view' %}">Корзина 
                 {% if request.user.cart.has_items %}(

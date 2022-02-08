@@ -9,6 +9,7 @@ from django.db.models.fields import DecimalField, FloatField, CharField
 class ProductCategory(models.Model):
     name = models.CharField(verbose_name="имя", max_length=64, unique=True, blank=True)
     description = models.TextField(verbose_name="описание", blank=True, null=True)
+    is_active = models.BooleanField(verbose_name='активна', default=True)
 
     def __str__(self) -> str:
         return self.name
@@ -37,5 +38,10 @@ class Product(models.Model):
 
     image = models.ImageField(upload_to="products_image", blank=True)
 
+    def total_cost(self):
+        return self.price * self.quantity
+
     def __str__(self):
         return f"{self.name} ({self.category.name})"
+
+    
