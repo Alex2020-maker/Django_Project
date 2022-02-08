@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "mainapp",
     "authapp",
     "cartapp",
+    "adminapp",
 ]
 # Это такие функции, через которые проходит запрос прежде, чем попасть в файл views.py
 MIDDLEWARE = [

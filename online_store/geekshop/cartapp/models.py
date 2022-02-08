@@ -25,3 +25,5 @@ class Cart(models.Model):
     add_datetime = models.DateTimeField(verbose_name="время", auto_now_add=True)
 
     objects = CartManager()
+
+  
