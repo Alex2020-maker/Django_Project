@@ -1,5 +1,6 @@
 {% extends 'adminapp/base.html' %}
 {% load static %}
+{% load tags %}
 
 {% block content %}
   <div class="products_list">
@@ -8,12 +9,30 @@
         новый продукт
       </a>
     </button>
+
+    <div class="paginator">
+      {% if objects.has_previous %}
+      <a 
+        href="{% url 'admin:page' category.pk objects.previous_page_number %}">
+        <<</a
+      >
+      {% endif %}
+      <span class="current">
+          страница {{ objects.number }} из {{ objects.paginator.num_pages }}
+      </span>
+      {% if objects.has_next %}
+      <a 
+        href="{% url 'admin:page' category.pk objects.next_page_number %}"><i
+              class="fas fa-chevron-circle-right"></i>
+        >></a
+      >
+      {% endif %}
+    </div>
 		
     {% for object in objects %}
       <div class="product_record">
         <img 
-          src="/media/{{object.image|default:'products_images/default.jpg'}}"
-          alt="{{ object.name }}">
+          src="{{ object.image|media_folder_products }}" alt="{{ object.name }}">
         <div class="product_name">
           {{ object.name|title }}
         </div>

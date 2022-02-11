@@ -1,3 +1,4 @@
+from dataclasses import is_dataclass
 import random
 import decimal
 from django.db import models
@@ -36,7 +37,10 @@ class Product(models.Model):
         verbose_name="количество товаров на складе", default=0
     )
 
-    image = models.ImageField(upload_to="products_image", blank=True)
+    image = models.ImageField(upload_to="products_image", blank=True) 
+
+    is_active = models.BooleanField(verbose_name="В каталоге", default=True)
+      
 
     def total_cost(self):
         return self.price * self.quantity
