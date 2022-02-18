@@ -9,14 +9,16 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 def check_is_superuser(user):
     if not user.is_superuser:
         raise PermissionDenied
     return True
 
+
 @user_passes_test(check_is_superuser)
 def categories(request, page=1):
-    title = 'админка/категории'
+    title = "админка/категории"
 
     categories_list = ProductCategory.objects.all()
     paginator = Paginator(categories_list, 2)
@@ -27,37 +29,34 @@ def categories(request, page=1):
     except EmptyPage:
         categories_paginator = paginator.page(paginator.num_pages)
 
-    content = {
-        'title': title,
-        'objects': categories_paginator
-    }
+    content = {"title": title, "objects": categories_paginator}
 
-    return render(request, 'adminapp/categories.html', content)
+    return render(request, "adminapp/categories.html", content)
 
 
 class ProductCategoryCreateView(CreateView):
     model = ProductCategory
-    template_name = 'adminapp/category/category_update.html'
-    success_url = reverse_lazy('admin:categories')
-    fields = '__all__'
+    template_name = "adminapp/category/category_update.html"
+    success_url = reverse_lazy("admin:categories")
+    fields = "__all__"
 
 
 class ProductCategoryUpdateView(UpdateView):
     model = ProductCategory
-    template_name = 'adminapp/category/category_update.html'
-    success_url = reverse_lazy('admin:categories')
-    fields = '__all__'
+    template_name = "adminapp/category/category_update.html"
+    success_url = reverse_lazy("admin:categories")
+    fields = "__all__"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'категории/редактирование'
+        context["title"] = "категории/редактирование"
         return context
 
 
 class ProductCategoryDeleteView(DeleteView):
     model = ProductCategory
-    template_name = 'adminapp/category/category_delete.html'
-    success_url = reverse_lazy('admin:categories')
+    template_name = "adminapp/category/category_delete.html"
+    success_url = reverse_lazy("admin:categories")
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
