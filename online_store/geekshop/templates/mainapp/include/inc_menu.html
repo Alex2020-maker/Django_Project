@@ -1,56 +1,55 @@
 <div class="header clearfix">
-    <a href="{% url 'index' %}" class="logo"></a>
-    <ul class="menu">
-        <li>
-            <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}">
-                домой
-            </a>
-        </li>
+  <a href="{% url 'index' %}" class="logo"></a>
+  <ul class="menu">
     <li>
-        <a href="{% url 'products:index' %}" class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}">
-            продукты
-        </a>
+      <a
+        href="{% url 'index' %}"
+        class="{% if request.resolver_match.url_name == 'main' %}active{% endif %}"
+      >
+        домой
+      </a>
     </li>
-        <li>
-            <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
-                контакты
-            </a>
-        </li>
-        
-        {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'auth:edit' %}">
-                    {{ user.first_name|default:'Пользователь' }}          
-                </a>
-            </li>
-            <li>
-                <a href="{% url 'auth:logout' %}">выйти</a>
-            </li>
-        {% else %}  
-            <li>
-                <a href="{% url 'auth:login' %}">войти</a>
-            </li>
-            <li>
-                <a href="{% url 'auth:register' %}">зарегистрироваться</a>
+    <li>
+      <a
+        href="{% url 'products:index' %}"
+        class="{% if request.resolver_match.namespace == 'products' %}active{% endif %}"
+      >
+        продукты
+      </a>
+    </li>
+    <li>
+      <a
+        href="{% url 'contact' %}"
+        class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+      >
+        контакты
+      </a>
+    </li>
 
-            </li>
-        {% endif %}
-        
-        {% if user.is_superuser %}
-        <li>
-          <a href="{% url 'admin:users' %}">админка</a>
-        </li>
+    {% if user.is_authenticated %}
+    <li>
+      <a href="{% url 'auth:edit' %}">
+        {{ user.first_name|default:'Пользователь' }}
+      </a>
+    </li>
+    {% endif %} {% if user.is_superuser %}
+    <li>
+      <a href="{% url 'admin:users' %}">админка</a>
+    </li>
+    {% endif %}
+    <li>
+      {% if user.is_authenticated %}
+      <a href="{% url 'auth:logout' %}">выйти</a>
+      {% else %}
+      <a href="{% url 'auth:login' %}">войти</a>
       {% endif %}
-      
-        <li>
-            <a href="{% url 'cart:view' %}">Корзина 
-                {% if request.user.cart.has_items %}(
-                    {{ request.user.cart.amount }}, {{ request.user.cart.total_cost }})
-                {% endif %}
-            </a>
-        </li>
-    </ul>
-    <a href="#" class="search"></a>
-    <a href="#" class="basket"></a>
+    </li>
+  </ul>
+  <a href="#" class="search"></a>
+  <a href="{% url 'cart:view' %}" class="cart">
+    <span>
+      {% if request.user.cart.has_items %} {{ request.user.cart.total_cost }}
+      руб ({{ request.user.cart.amount }} шт) {% endif %}
+    </span>
+  </a>
 </div>
-

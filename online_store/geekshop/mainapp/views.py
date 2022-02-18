@@ -52,30 +52,29 @@ def products(request, pk=None, page=1):
 
     if pk is not None:
         if pk == 0:
-            category = {
-                'pk': 0,
-                'name': 'все'
-            }
-            products = Product.objects.filter(is_active=True,\
-                   category__is_active=True).order_by('price')
+            category = {"pk": 0, "name": "все"}
+            products = Product.objects.filter(
+                is_active=True, category__is_active=True
+            ).order_by("price")
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk, \
-                   is_active=True, category__is_active=True).order_by('price')
-        
+            products = Product.objects.filter(
+                category__pk=pk, is_active=True, category__is_active=True
+            ).order_by("price")
+
         paginator = Paginator(products, 2)
         try:
             products_paginator = paginator.page(page)
         except PageNotAnInteger:
             products_paginator = paginator.page(1)
         except EmptyPage:
-            products_paginator = paginator.page(paginator.num_pages)  
+            products_paginator = paginator.page(paginator.num_pages)
 
         content = {
             "title": title,
             "links": menu_links,
             "category": category,
-            "products": products_paginator
+            "products": products_paginator,
         }
 
         return render(request, "mainapp/products_list.html", context=content)

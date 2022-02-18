@@ -15,10 +15,3 @@
         </button>
     </div>
 {% endfor %}
-
-{% if cart_items %}
-    <div class="cart_summary">
-        В корзине {{ cart_items.0.total_quantity }} товаров общей стоимостью
-        {{ cart_items.0.total_cost }} руб
-    </div>
-{% endif %}

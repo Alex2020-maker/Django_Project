@@ -12,6 +12,7 @@ class CartManager(models.Manager):
     def total_cost(self):
         return sum(item.product.price * item.quantity for item in self.all())
 
+    @property
     def has_items(self):
         return bool(len(self.all()))
 
@@ -25,5 +26,3 @@ class Cart(models.Model):
     add_datetime = models.DateTimeField(verbose_name="время", auto_now_add=True)
 
     objects = CartManager()
-
-  

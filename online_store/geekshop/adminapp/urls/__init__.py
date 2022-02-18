@@ -4,6 +4,4 @@ from .user import urlpatterns as user
 
 app_name = "adminapp"
 
-urlpatterns = [
-    *category, *product, *user
-]
+urlpatterns = [*category, *product, *user]
