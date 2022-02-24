@@ -1,13 +1,14 @@
 import hashlib
 import random
+
+from django import forms
 from django.contrib.auth.forms import (
     AuthenticationForm,
     UserChangeForm,
     UserCreationForm,
 )
-from django import forms
 
-from .models import ShopUser
+from .models import ShopUser, ShopUserProfile
 
 
 class ShopUserLoginForm(AuthenticationForm):
@@ -23,16 +24,8 @@ class ShopUserLoginForm(AuthenticationForm):
             field.widget.attrs["class"] = "form-control"
 
 
-class KazanRestrictionMixin:
-    def clean_city(self):
-        city_name = self.cleaned_data["city"]
-        if city_name != "Казань":
-            raise forms.ValidationError("Только для жителей Казани")
 
-        return city_name
-
-
-class ShopUserEditForm(KazanRestrictionMixin, UserChangeForm):
+class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
         fields = (
@@ -64,9 +57,7 @@ class ShopUserEditForm(KazanRestrictionMixin, UserChangeForm):
         return data
 
 
-
-
-class ShopUserRegisterForm(KazanRestrictionMixin, UserCreationForm):
+class ShopUserRegisterForm(UserCreationForm):
     class Meta:
         model = ShopUser
         fields = (
@@ -92,7 +83,7 @@ class ShopUserRegisterForm(KazanRestrictionMixin, UserCreationForm):
             raise forms.ValidationError("Вы слишком молоды!")
 
         return data
-    
+
     def save(self):
         user = super(ShopUserRegisterForm, self).save()
         user.is_active = False
@@ -103,3 +94,15 @@ class ShopUserRegisterForm(KazanRestrictionMixin, UserCreationForm):
         user.save()
 
         return user
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = ShopUserProfile
+        fields = ("tagline", "aboutMe", "gender")
+
+    def __init__(self, *args, **kwargs):
+        super(ShopUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+            field.help_text = ""

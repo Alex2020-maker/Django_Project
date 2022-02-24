@@ -1525,8 +1525,7 @@ td:first-child {
 }
 .slider-product {
 	width: 570px;
-	/*height: 570px;*/
-	height: 400px;
+	height: 200px;
 }
 .slider-control {
 	width: 420px;
