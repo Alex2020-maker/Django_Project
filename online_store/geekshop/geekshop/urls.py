@@ -22,13 +22,15 @@ from django.conf.urls import include
 
 
 urlpatterns = [
+    # Social auth
+    path("", include("social_django.urls", namespace="social")),
+    # Application urls
     path("", mainapp_views.index, name="index"),
     path("contact/", mainapp_views.contact, name="contact"),
     path("products/", include("mainapp.urls", namespace="products")),
     path("auth/", include("authapp.urls", namespace="auth")),
     path("cart/", include("cartapp.urls", namespace="cart")),
     path("admin/", include("adminapp.urls", namespace="admin")),
-    # path("defaultadmin/", admin.site.urls),
 ]
 
 
