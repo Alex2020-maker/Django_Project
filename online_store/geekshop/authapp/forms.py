@@ -24,7 +24,6 @@ class ShopUserLoginForm(AuthenticationForm):
             field.widget.attrs["class"] = "form-control"
 
 
-
 class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
