@@ -15,6 +15,8 @@ class CartManager(models.Manager):
     @property
     def has_items(self):
         return bool(len(self.all()))
+    
+
 
 
 class Cart(models.Model):
@@ -25,4 +27,10 @@ class Cart(models.Model):
     quantity = models.PositiveIntegerField(verbose_name="количество", default=0)
     add_datetime = models.DateTimeField(verbose_name="время", auto_now_add=True)
 
+    @classmethod
+    def get_items(self,user):
+        return Cart.objects.filter(user=user)
+
     objects = CartManager()
+
+

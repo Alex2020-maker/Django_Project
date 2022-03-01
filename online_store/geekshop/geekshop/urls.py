@@ -30,6 +30,7 @@ urlpatterns = [
     path("products/", include("mainapp.urls", namespace="products")),
     path("auth/", include("authapp.urls", namespace="auth")),
     path("cart/", include("cartapp.urls", namespace="cart")),
+    path("order/", include("ordersapp.urls", namespace="order")),
     path("admin/", include("adminapp.urls", namespace="admin")),
 ]
 

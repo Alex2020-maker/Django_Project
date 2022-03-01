@@ -628,7 +628,7 @@ html, body {
 }
 
 .container {
-	width: 1366px;
+	width: 1374px;
 	margin: 0 auto;
 	min-height: 100%;
 }
@@ -1165,7 +1165,7 @@ html, body {
 
 .footer {
 	height: 384px;
-	width: 1169px;
+	width: 1280px;
 	background-color: #f7f7f7;
 	padding-left: 99px;
 	padding-right: 98px;
@@ -1236,7 +1236,7 @@ td:first-child {
 }
 
 .text-footer:nth-child(2) {
-	width: 422px;
+	width: 322px;
 }
 .text-footer:nth-child(3) {
 	width: 363px;
@@ -1337,8 +1337,8 @@ td:first-child {
 	padding: 0px 97px;
 }
 .location-1 {
-	height: 368px;
-	width: 368px;
+	height: 360px;
+	width: 360px;
 	border: 1px solid #9c9c9c;
 	margin: 71px 28px 122px 0px;
 	float: left;
@@ -1525,7 +1525,8 @@ td:first-child {
 }
 .slider-product {
 	width: 570px;
-	height: 200px;
+	/*height: 570px;*/
+	height: 400px;
 }
 .slider-control {
 	width: 420px;
@@ -1657,8 +1658,8 @@ td:first-child {
 	float: left;
 	margin-right: 30px;
 	display: block;
-	height: 370px;
-	width: 370px;
+	height: 340px;
+	width: 340px;
 	position: relative;
 }
 .related-products .block:nth-child(3n) {
