@@ -628,7 +628,7 @@ html, body {
 }
 
 .container {
-	width: 1374px;
+	width: 1366px;
 	margin: 0 auto;
 	min-height: 100%;
 }
@@ -1165,7 +1165,7 @@ html, body {
 
 .footer {
 	height: 384px;
-	width: 1280px;
+	width: 1169px;
 	background-color: #f7f7f7;
 	padding-left: 99px;
 	padding-right: 98px;
@@ -1236,7 +1236,7 @@ td:first-child {
 }
 
 .text-footer:nth-child(2) {
-	width: 322px;
+	width: 422px;
 }
 .text-footer:nth-child(3) {
 	width: 363px;
@@ -1337,8 +1337,8 @@ td:first-child {
 	padding: 0px 97px;
 }
 .location-1 {
-	height: 360px;
-	width: 360px;
+	height: 368px;
+	width: 368px;
 	border: 1px solid #9c9c9c;
 	margin: 71px 28px 122px 0px;
 	float: left;
@@ -1658,8 +1658,8 @@ td:first-child {
 	float: left;
 	margin-right: 30px;
 	display: block;
-	height: 340px;
-	width: 340px;
+	height: 370px;
+	width: 370px;
 	position: relative;
 }
 .related-products .block:nth-child(3n) {
@@ -1696,4 +1696,25 @@ td:first-child {
 }
 .related-products a:hover .text{
 	display: block;
+}
+
+.order_container {
+    margin: 25px auto;
+    width: 900px;
+}
+
+.order_container button a {
+    text-decoration: none;
+    /* color: #555; */
+}
+
+.order_container img {
+    display: block;
+    float: left;
+    width: 150px;
+    border-radius: 25px;
+}
+
+button.last {
+    margin-bottom: 10px;
 }

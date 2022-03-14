@@ -8,7 +8,7 @@
       Продукт<strong>{{ object.category.name|title }} / 
                      {{ object.name|title }}</strong> 
     </div>
-    <img src="/media/{{ object.image|media_folder_products }}"
+    <img src="{{ object.image|media_folder_products }}"
          alt="{{ object.name }}">
     <div class="summary">
       <b>цена</b>

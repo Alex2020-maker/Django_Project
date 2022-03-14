@@ -9,19 +9,26 @@
        {% endblock %}
    </title>
    {% block css %}
-       <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-       <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
    {% endblock %}
    {% block js %}
-       <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-       <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/orders_script.js' %}"></script>
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
    {% endblock %}
+
+
 </head>
 <body>
   <div class="order_container">
        {% block content %}
 
+       {% endblock %}
+
+       {% block exstra_js %}
        {% endblock %}
       
   </div>
