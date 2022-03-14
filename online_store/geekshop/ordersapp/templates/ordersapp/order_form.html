@@ -1,5 +1,15 @@
 {% extends "ordersapp/base.html" %}
 {% load static %}
+{% block exstra_js %}
+<script>
+    $('.formset_row').formset({
+        addText: 'добавить продукт',
+        deleteText: 'удалить',
+        prefix: 'orderitems',
+        removed: recalculate_total_values
+     });
+</script>
+{% endblock %}
 
 {% block content %}
    {% include 'ordersapp/includes/inc_order_summary.html' %}
@@ -30,7 +40,13 @@
                                    {% endfor %}
                                {% endif %}
                                {{ field.errors.as_ul }}
-                               {{ field }}
+                               {% if field.name == 'price' %}
+                                    <span class="orderitems-{{forloop.parentloop.counter0}}-price">
+                                        {{ field.value }}
+                                    </span> руб
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
                            </td>
                        {% endfor %}
                    </tr>
