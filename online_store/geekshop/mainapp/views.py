@@ -1,3 +1,5 @@
+import re
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 import random
@@ -32,7 +34,7 @@ MENU_LINKS = [
 
 
 def index(request):
-    products = Product.objects.all()[:4]
+    products = Product.objects.all()[:3]
     return render(
         request,
         "mainapp/index.html",
@@ -114,3 +116,14 @@ def contact(request):
             "links": MENU_LINKS,
         },
     )
+
+def product_price(request, pk):
+
+    products = Product.objects.filter(pk=pk)
+            
+    if products:
+        return JsonResponse({"price": products[0].price})
+    else:
+        return JsonResponse({"price": 0})
+
+

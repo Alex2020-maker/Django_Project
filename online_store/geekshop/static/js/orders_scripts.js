@@ -32,9 +32,18 @@ function recalculate_total_values() {
 }
  
 window.onload = function() {
-    $('.order_form').on('click', 'input[type="number"]', recalculate_total_values)
-    $('.order_form').on('click', 'input[type="checkbox"]', recalculate_total_values)
-    recalculate_total_values()
+    $('.order_form input[type="number"]').on('click', recalculate_total_values);
+    $('.order_form select').on('change', function(event) {
+        var product_id = this.value;
+        $.ajax({
+            url: "/products/product" + product_id + "/price",
+            success: function (data) {
+                $('.orderitems-' + product_id + '-price').text(data.result);
+            },
+        });
+
+    })
+    recalculate_total_values();
 }
 
  

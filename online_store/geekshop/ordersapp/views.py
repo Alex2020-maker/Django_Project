@@ -120,7 +120,6 @@ class OrderItemsUpdate(UpdateView):
                if form.instance.pk:
                    form.initial['price'] = form.instance.product.price
            data['orderitems'] = formset
-           
         return data
 
     def form_valid(self, form):

@@ -84,8 +84,7 @@ def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
     if request.method == "POST":
-        product.is_active = False
-        product.save()
+        product.delete()
         return HttpResponseRedirect(
             reverse("admin:products", args=[product.category.pk])
         )

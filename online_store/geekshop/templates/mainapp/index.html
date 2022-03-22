@@ -28,10 +28,10 @@
         </div>
         <div class="tab-content">
             {% for product in products %}
-                <div class="block">
+                <div class="block" style="height: 370px; 	width: 370px;">
                     <a href="{% url 'products:product' product.pk %}">
                         <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}"> 
-                        <div class="text">
+                        <div class="text" style="height: 370px; 	width: 370px;">
                             <img src="{% static 'img/icon-hover.png' %}" alt="img">
                             <h3>Категория:{{ product.category.name }}</h3>
                             <h4>Название: {{ product.name }}</h4>
