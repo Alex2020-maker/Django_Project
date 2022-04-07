@@ -97,7 +97,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'django',
         'PASSWORD': 'geekbrains',
-        'HOST': '172.31.84.66'
+        'HOST': 'localhost'
     }
     
 }
