@@ -2,6 +2,7 @@ from collections import OrderedDict
 from datetime import datetime
 import imp
 from urllib.parse import urlencode, urlunparse
+from django import forms
 
 
 import requests
@@ -37,10 +38,10 @@ def save_user_profile(backend, user, response, *args, **kwargs):
         return
 
     data = resp.json()["response"][0]
-    if data["sex"]:
-        user.shopuserprofile.gender = (
-            ShopUserProfile.MALE if data["sex"] == 2 else ShopUserProfile.FEMALE
-        )
+    if data['sex'] == 2:
+        user.shopuserprofile.gender = ShopUserProfile.MALE
+    else:
+        user.shopuserprofile.gender = ShopUserProfile.FEMALE
 
     if data["about"]:
         user.shopuserprofile.aboutMe = data["about"]

@@ -20,6 +20,8 @@ from django.views.generic import (
 from ordersapp.models import Order, OrderItem
 
 from .forms import OrderForm, OrderItemForm
+from django.http import JsonResponse
+from mainapp.models import Product
 
 
 # Create your views here.
@@ -146,3 +148,11 @@ def order_forming_complete(request, pk):
     order.save()
 
     return HttpResponseRedirect(reverse("ordersapp:orders_list"))
+
+def get_product_price(request, pk):
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+    if product:
+        return JsonResponse({'price': product.price})
+    else:
+        return JsonResponse({'price': 0})

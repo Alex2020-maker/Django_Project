@@ -27,7 +27,9 @@ SECRET_KEY = "django-insecure-i$up&bim820+2x1l4350a@+mvd8o!8#+g&uz01gn=71)zq9a^e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "geekshop.com"]
+ALLOWED_HOSTS = ["*"]
+# Адрес сайта: http://18.116.202.221:8000
+# Базовый домен: 18.116.202.221
 
 
 # Application definition
@@ -89,7 +91,15 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
-    }
+    },
+    # 'default': {
+    #     'NAME': 'geekshop',
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'USER': 'django',
+    #     'PASSWORD': 'geekbrains',
+    #     'HOST': 'localhost'
+    # }
+    
 }
 
 

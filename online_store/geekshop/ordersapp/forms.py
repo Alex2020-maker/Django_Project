@@ -1,4 +1,5 @@
 from django import forms
+from mainapp.models import Product
 from ordersapp.models import Order, OrderItem
 
 
@@ -26,3 +27,5 @@ class OrderItemForm(forms.ModelForm):
             field.widget.attrs["class"] = "form-control"
             if field_name == "price":
                 field.widget.attrs["readonly"] = "true"
+                
+        self.fields['product'].queryset = Product.get_items()
