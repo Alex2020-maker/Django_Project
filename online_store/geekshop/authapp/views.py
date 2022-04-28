@@ -15,14 +15,12 @@ from authapp.utils import send_verify_mail
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def login(request):
     title = "вход"
 
     login_form = ShopUserLoginForm(data=request.POST or None)
 
-    next = request.GET['next'] if 'next' in request.GET.keys() else ''
+    next = request.GET["next"] if "next" in request.GET.keys() else ""
 
     if request.method == "POST" and login_form.is_valid():
         username = request.POST["username"]
@@ -31,18 +29,13 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
-            if 'next' in request.POST.keys():
-                #print('redirect next', request.POST['next'])
-                return HttpResponseRedirect(request.POST['next'])
+            if "next" in request.POST.keys():
+                # print('redirect next', request.POST['next'])
+                return HttpResponseRedirect(request.POST["next"])
             else:
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse("index"))
 
-
-    content = {
-        "title": title, 
-        "login_form": login_form,
-        'next': next
-    }
+    content = {"title": title, "login_form": login_form, "next": next}
     return render(request, "authapp/login.html", content)
 
 
@@ -61,7 +54,7 @@ def register(request):
         if register_form.is_valid():
             user = register_form.save()
             send_verify_mail(user)
-            return HttpResponseRedirect(reverse('auth:login'))
+            return HttpResponseRedirect(reverse("auth:login"))
     else:
         register_form = ShopUserRegisterForm()
 
@@ -94,7 +87,10 @@ def edit(request):
 def verify(request, email, activation_key):
     try:
         user = ShopUser.objects.get(email=email)
-        if user.activation_key == activation_key and not user.is_activation_key_expired():
+        if (
+            user.activation_key == activation_key
+            and not user.is_activation_key_expired()
+        ):
             user.is_active = False
             user.save()
             auth.login(request, user)

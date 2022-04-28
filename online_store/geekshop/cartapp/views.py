@@ -66,11 +66,13 @@ def cart_edit(request, pk, quantity):
             new_cart_item.quantity = quantity
             new_cart_item.save()
         else:
-            print('превышено количество на складе')
+            print("превышено количество на складе")
         if quantity == 0:
             new_cart_item.delete()
 
-        cart_items = Cart.objects.filter(user=request.user).order_by("product__category")
+        cart_items = Cart.objects.filter(user=request.user).order_by(
+            "product__category"
+        )
 
         content = {
             "cart_items": cart_items,

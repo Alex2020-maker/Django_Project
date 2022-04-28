@@ -32,7 +32,11 @@ MENU_LINKS = [
 
 
 def index(request):
-    products = Product.objects.all()[:4]
+    title = "Главная"
+    products = Product.objects.filter(
+        is_active=True, category__is_active=True
+    ).select_related("category")[:3]
+
     return render(
         request,
         "mainapp/index.html",
