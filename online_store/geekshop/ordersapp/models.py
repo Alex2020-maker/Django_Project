@@ -56,8 +56,6 @@ class Order(models.Model):
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
 
 
-
-
 # при удалении заказа товар возвращается на склад
 class OrderItemQuerySet(models.QuerySet):
     def delete(self, *args, **kwargs):
@@ -80,25 +78,26 @@ class OrderItem(models.Model):
 
     def get_product_cost(self):
         return self.product.price * self.quantity
-    
+
     def get_item(pk):
         return get_object_or_404(OrderItem, pk=pk)
 
     def save(self, *args, **kwargs):
         try:
             if self.pk:
-                self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
+                self.product.quantity -= (
+                    self.quantity - self.__class__.get_item(self.pk).quantity
+                )
             else:
                 self.product.quantity -= self.quantity
             if self.product.quantity < 0:
-                raise Exception('Количество превышает остаток на складе')
+                raise Exception("Количество превышает остаток на складе")
         except Exception as exp:
             print(exp)
         else:
             self.product.save()
             super(self.__class__, self).save(*args, **kwargs)
 
-    
     def delete(self):
         self.product.quantity += self.quantity
         self.product.save()

@@ -42,7 +42,9 @@ class Cart(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk:
-            self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
+            self.product.quantity -= (
+                self.quantity - self.__class__.get_item(self.pk).quantity
+            )
         else:
             self.product.quantity -= self.quantity
         self.product.save()

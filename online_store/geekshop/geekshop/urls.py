@@ -24,6 +24,8 @@ from django.conf.urls import include
 urlpatterns = [
     # Social auth
     path("", include("social_django.urls", namespace="social")),
+    # Debug Toolbar
+    path("__debug__/", include("debug_toolbar.urls")),
     # Application urls
     path("", mainapp_views.index, name="index"),
     path("contact/", mainapp_views.contact, name="contact"),

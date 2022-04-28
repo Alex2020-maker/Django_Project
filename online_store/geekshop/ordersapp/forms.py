@@ -19,7 +19,7 @@ class OrderItemForm(forms.ModelForm):
         model = OrderItem
         exclude = []
 
-    price = forms.CharField(label='Цена', required=False)
+    price = forms.CharField(label="Цена", required=False)
 
     def __init__(self, *args, **kwargs):
         super(OrderItemForm, self).__init__(*args, **kwargs)
@@ -27,5 +27,5 @@ class OrderItemForm(forms.ModelForm):
             field.widget.attrs["class"] = "form-control"
             if field_name == "price":
                 field.widget.attrs["readonly"] = "true"
-                
-        self.fields['product'].queryset = Product.get_items()
+
+        self.fields["product"].queryset = Product.get_items()
