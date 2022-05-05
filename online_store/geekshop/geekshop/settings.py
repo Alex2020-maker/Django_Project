@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Базовый домен: 18.116.202.221
 
 INTERNAL_IPS = [
+    "34.202.74.221",
     "127.0.0.1",
 ]
 
@@ -228,6 +229,6 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Email
 
-DOMAIN_NAME = "http://localhost:8000"
+
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = "tmp/email-messages/"
