@@ -61,8 +61,9 @@
   <a href="#" class="search"></a>
   <a href="{% url 'cart:view' %}" class="cart">
     <span>
-      {% if request.user.cart.has_items %} {{ request.user.cart.total_cost }}
-      руб ({{ request.user.cart.amount }} шт) {% endif %}
+        {% if request.user.cart.has_items %} {{ request.user.cart.total_cost }}
+        руб ({{ request.user.cart.amount }} шт) 
+        {% endif %}
     </span>
   </a>
 
