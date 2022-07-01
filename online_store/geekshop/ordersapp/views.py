@@ -22,7 +22,7 @@ from ordersapp.models import Order, OrderItem
 from .forms import OrderForm, OrderItemForm
 from django.http import JsonResponse
 from mainapp.models import Product
-
+from django.utils.functional import cached_property
 
 # Create your views here.
 
@@ -86,6 +86,7 @@ class OrderItemsCreate(CreateView):
 
 
 # Форма чтения заказа
+
 class OrderRead(DetailView):
     model = Order
 

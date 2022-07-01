@@ -2,18 +2,20 @@ from django.db import models
 from django.conf import settings
 from mainapp.models import Product
 from django.shortcuts import get_object_or_404
+from django.utils.functional import cached_property
 
 
 class CartManager(models.Manager):
-    @property
+    
+    @cached_property
     def amount(self):
         return sum(item.quantity for item in self.all())
 
-    @property
+    @cached_property
     def total_cost(self):
         return sum(item.product.price * item.quantity for item in self.all())
 
-    @property
+    @cached_property
     def has_items(self):
         return bool(len(self.all()))
 
@@ -36,7 +38,8 @@ class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name="количество", default=0)
     add_datetime = models.DateTimeField(verbose_name="время", auto_now_add=True)
-
+    
+    @cached_property
     def get_item(pk):
         return get_object_or_404(Cart, pk=pk)
 
@@ -56,6 +59,7 @@ class Cart(models.Model):
         super(self.__class__, self).delete()
 
     @classmethod
+    @cached_property
     def get_items(self, user):
         return Cart.objects.filter(user=user)
 
